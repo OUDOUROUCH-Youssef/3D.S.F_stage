@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+import LoginForm from './components/login';
+import SignupForm from './components/signup';
+import Upload from './components/upload';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+function App() { 
+    return( 
+        
+        <div className='home'>
+          <header className="header">
+      <nav className="nav">
+        <a href="#" className="nav_logo">
+          3dSmart
         </a>
-      </header>
-    </div>
-  );
-}
+
+        <ul className="nav_items">
+          <li className="nav_item">
+            <a href="/3D.S.F_stage" className="nav_link">
+              Home
+            </a>
+            <a href="#" className="nav_link">
+              Services
+            </a>
+            <a href="/3D.S.F_stage/Upload" className="nav_link" id="upload">
+              Upload
+            </a>
+            <a href="#" className="nav_link">
+              Contact
+            </a>
+          </li>
+        </ul>
+        <a href='/3D.S.F_stage/login'><button className="button" id="form-open">
+          login
+        </button></a>
+      </nav>
+    </header>
+          <BrowserRouter>
+          <Routes>
+            <Route  path="/3D.S.F_stage/login" element={<LoginForm/>}/>
+            <Route  path="/3D.S.F_stage/signup" element={<SignupForm/>}/>
+            <Route  path="/3D.S.F_stage/Upload" element={<Upload/>}/>
+          </Routes>
+          </BrowserRouter>
+              
+        </div>
+);}
+
 
 export default App;
