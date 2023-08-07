@@ -343,3 +343,57 @@ input[type=file]::file-selector-button:hover {
    width: '50%';
     height: '82%';
 }
+
+.conteudo{
+  width: 100%; 
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+}
+.conteudo h1{
+  font-size: 50px;
+  margin-top: 80px;
+}
+.conteudo p{
+  margin: 20px auto;
+  font-weight: 100;
+  line-height: 25px;
+}
+
+#home_button{
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  margin: 20px 10px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 20px;
+  border: 2px solid #7c8ffc;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+#home_span {
+  background: #7c8ffc;
+  height: 100%;
+  width: 0;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+
+#home_button:hover span{
+  width: 100%;
+}
+
+#home_button:hover {
+  border: none;
+}
