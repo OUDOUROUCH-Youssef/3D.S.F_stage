@@ -26,7 +26,7 @@ function Upload() {
                 Upload File
       </label>
       <input type="file" accept=".gltf, .glb, .obj, .fbx" onChange={handleFileUpload} />
-      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45 }} style={{ position: 'absolute', width: '50%', height: '82%' }}>
+      <Canvas dpr={[1, 2]} shadows camera={{ fov: 45 }} style={{ position: 'absolute', width: '50%', height: '84%', borderRadius:'25px' }}>
         <color attach="background" args={['#ADD8E6']} />
         <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
           <Stage environment={'sunset'}>
