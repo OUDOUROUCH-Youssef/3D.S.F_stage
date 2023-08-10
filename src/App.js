@@ -5,9 +5,11 @@ import SignupForm from './components/signup';
 import Suggest from './components/suggest.js';
 import Upload from './components/upload';
 import Home from './components/home';
+
 import { FaFacebookF } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaGoogle } from 'react-icons/fa';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() { 
