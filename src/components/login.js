@@ -1,10 +1,12 @@
 // LoginForm.js
 import React from 'react';
+import { CgClose,CgLogIn } from "react-icons/cg";
 function LoginForm() {
   return (
     <div className="login_form">
       <form action="#">
-        <h2>login</h2>
+        <h2><CgLogIn/> login</h2>
+        <a href='/3D.S.F_stage' class='close'><CgClose/></a>
         <div className="input_box">
           <input type="email" placeholder="Enter your Email" required />
           <i className="uil uil-envelope-alt email"></i>
