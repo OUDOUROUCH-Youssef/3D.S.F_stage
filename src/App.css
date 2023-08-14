@@ -99,7 +99,7 @@ a {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 25%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 101;
@@ -524,17 +524,16 @@ ul{
   transform: all 0.4s ease-out;
 
 }
-
 .form-2 .form-control-input,
 .form-2 .form-control-textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin: 5px;
   font-size: 16px;
   transition: border-color 0.3s ease;
 }
-
 .form-2 .form-control-input:focus,
 .form-2 .form-control-textarea:focus {
   outline: none;
@@ -559,4 +558,54 @@ ul{
 .form-2 .form-message {
   text-align: center;
   margin-top: 20px;
+}
+
+/*==========Result============*/
+
+#resultat {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 98%;
+  height: 65%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background: aliceblue;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease-out;
+}
+
+
+.canvas2 {
+  flex: 1;
+  margin: 10px;
+}
+
+.canvas2 canvas {
+  width:40%;
+  height: 500px;
+  border-radius:12px;
+}
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.r_button {
+  margin: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
 }

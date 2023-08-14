@@ -3,13 +3,11 @@ import './App.css';
 import LoginForm from './components/login';
 import SignupForm from './components/signup';
 import Suggest from './components/suggest.js';
-import Upload from './components/upload';
+import {Upload} from './components/upload';
 import Home from './components/home';
-
 import { FaFacebookF } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaGoogle } from 'react-icons/fa';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() { 
@@ -53,30 +51,30 @@ function App() {
           </Routes>
           </BrowserRouter>
           </div>
-          <div class="footer">
-            <div class="container">
-              <div class="row">
-                <div class="footer-col">
+          <div className="footer">
+            <div className="container">
+              <div className="row">
+                <div className="footer-col">
                   <h4>company</h4>
                   <ul>
                     <li><a href="#">about us</a></li>
                     <li><a href="#">our services</a></li>
                   </ul>
                 </div>
-                <div class="footer-col">
+                <div className="footer-col">
                   <h4>get help</h4>
                   <ul>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="/3D.S.F_stage/suggest">suggestion</a></li>
                   </ul>
                 </div>
-                <div class="footer-col">
+                <div className="footer-col">
                   <h4>become user</h4>
                   <ul>
                     <li><a href="/3D.S.F_stage/signup">Signup</a></li>
                   </ul>
                 </div>
-                <div class="footer-col">
+                <div className="footer-col">
                   <h4>follow us</h4>
                   <div class="social-links">
                     <a href="https://web.facebook.com/people/3D-Smart-Factory/100063931760200/"><FaFacebookF /></a>
