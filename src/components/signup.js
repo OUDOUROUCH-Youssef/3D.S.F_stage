@@ -1,11 +1,13 @@
 // SignupForm.js
 import React from 'react';
+import { CgClose } from "react-icons/cg";
 import '../App.css';
 function SignupForm() {
   return (
     <div className="signup_form">
       <form action="#">
         <h2>Signup</h2>
+        <a href='/3D.S.F_stage' class='close'><CgClose/></a>
         <div className="input_box">
           <input type="email" placeholder="Enter your Email" required />
           <i className="uil uil-envelope-alt email"></i>

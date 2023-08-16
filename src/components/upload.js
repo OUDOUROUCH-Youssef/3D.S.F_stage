@@ -1,7 +1,8 @@
 import '../App';
+import Result from './result.js';
 import React, { useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { useGLTF, Stage, PresentationControls } from '@react-three/drei';
+import { CgClose } from "react-icons/cg";
+import { useGLTF } from '@react-three/drei';
 
 function Model({ url, ...props }) {
   const { scene } = useGLTF(url);
@@ -11,12 +12,14 @@ function Model({ url, ...props }) {
 function Upload() {
   const [uploadedModel, setUploadedModel] = useState(null);
   const [dragActive, setDragActive] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       const url = URL.createObjectURL(file);
       setUploadedModel(url);
+      setShowResult(true);
     }
   };
 
@@ -39,6 +42,7 @@ function Upload() {
     if (file) {
       const url = URL.createObjectURL(file);
       setUploadedModel(url);
+
     }
   };
 
@@ -59,6 +63,10 @@ function Upload() {
   }, []);
 
   return (
+    <div>
+      {showResult ? ( 
+      <Result uploadedModel={uploadedModel} />
+    ) : 
     <div className="upload_base">
       <label htmlFor="images" className={`drop-container ${dragActive ? "drag-active" : ""}`} id="dropcontainer">
         <span className="drop-title">Drop files here</span> or
@@ -69,19 +77,11 @@ function Upload() {
           onChange={handleFileUpload}
         />
       </label>
-
-      <div className="canvas-container">
-        <Canvas dpr={[1, 2]} shadows camera={{ fov: 45 }}>
-          <color attach="background" args={['#ADD8E6']} />
-          <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
-            <Stage environment={'sunset'}>
-              {uploadedModel ? <Model url={uploadedModel} scale={0.01} /> : null}
-            </Stage>
-          </PresentationControls>
-        </Canvas>
-      </div>
+      
+      <a href='/3D.S.F_stage' class='close'><CgClose/></a>
+    </div>}
     </div>
   );
 }
 
-export default Upload;
+export {Model, Upload};
