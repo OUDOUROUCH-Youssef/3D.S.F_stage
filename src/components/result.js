@@ -9,6 +9,22 @@ import { CgPushDown } from "react-icons/cg";
 import { Stage, PresentationControls } from '@react-three/drei';
 
 function Result({ uploadedModel }){
+
+    //download original object
+
+    const handleDownloadOriginalGLB = async () => {
+        if (uploadedModel) {
+          try {
+            const response = await fetch(uploadedModel); // Fetch the original GLB file
+            const glbBlob = await response.blob();
+            saveAs(glbBlob, 'original_model.glb'); // Download as .glb file
+          } catch (error) {
+            console.error('Error downloading original GLB:', error);
+          }
+        }
+      };
+    
+
     //download functions
   const [stlData, setStlData] = useState(null);
   const handleDownloadSTL = () => {
@@ -43,7 +59,7 @@ function Result({ uploadedModel }){
             <div className="buttons-container">
                 <button className='r_button'> Display</button>
                 <button className='r_button'>  Predict </button>
-                <button className='r_button' onClick={handleDownloadSTL}>Download <CgPushDown/></button>
+                <button className='r_button' onClick={handleDownloadOriginalGLB}>Download <CgPushDown/></button>
             </div >
             <div id="changed" className="canvas2">
                 <h1>Result object</h1>
