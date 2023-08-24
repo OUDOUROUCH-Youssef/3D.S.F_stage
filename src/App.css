@@ -60,9 +60,15 @@ a {
   padding: 6px 24px;
   border: 2px solid white;
   color: white;
-  background: transparent;
+  background: transparent ;
   border-radius: 6px;
   cursor: pointer;
+}
+
+#button_signup {
+
+   background-color: #0056b3;
+   margin-top: 10px;
 }
 
 .button:active {
@@ -270,6 +276,12 @@ a {
   text-align: center;
   margin-top: 15px;
 }
+
+.error_message {
+  font-size: 12px;
+  margin-left: 120px;
+}
+
 
 .login_form, .signup_form{
   position: absolute;

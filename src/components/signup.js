@@ -1,25 +1,28 @@
-// SignupForm.js
-import React from 'react';
+import React, { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import '../App.css';
-import { useState } from 'react';
-
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 
 function SignupForm() {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPasswordError, setShowPasswordError] = useState(false); // Track error state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setShowPasswordError(true); // Show error if passwords don't match
+      return; // Don't proceed if passwords don't match
+    }
+
+    setShowPasswordError(false); // Hide error if passwords match
 
     // Create a data object with form fields
     const formData = {
       email,
       password,
-      
     };
 
     try {
@@ -40,34 +43,48 @@ function SignupForm() {
         <h2>Signup</h2>
         <a href='/3D.S.F_stage' className='close'><CgClose/></a>
         <div className="input_box">
-        <input
+          <input
             type="email"
             placeholder="Enter your Email"
             required
-            value={email} // Connect the value to the state
-            onChange={(e) => setEmail(e.target.value)} // Handle input changes
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <i className="uil uil-envelope-alt email"></i>
         </div>
         <div className="input_box">
-        <input
+          <input
             type="password"
             placeholder="create your password"
             required
-            value={password} // Connect the value to the state
-            onChange={(e) => setPassword(e.target.value)} // Handle input changes
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <i className="uil uil-lock password"></i>
           <i className="uil uil-eye-slash pw_hide"></i>
         </div>
 
         <div className="input_box">
-          <input type="password" placeholder="confirm your password" required />
+          <input
+            type="password"
+            placeholder="confirm your password"
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            style={
+              showPasswordError
+                ? { borderColor: 'red', backgroundColor: '#fee', outlineColor: 'red' }
+                : {}
+            }
+          />
+          {showPasswordError && (
+            <span className="error_message">Passwords don't match</span>
+          )}
           <i className="uil uil-lock password"></i>
           <i className="uil uil-eye-slash pw_hide"></i>
         </div>
 
-        <button type="submit" className="button">
+        <button type="submit" className="button" id='button_signup'>
           Signup
         </button>
         
@@ -80,7 +97,3 @@ function SignupForm() {
 }
 
 export default SignupForm;
-
-
-
-
