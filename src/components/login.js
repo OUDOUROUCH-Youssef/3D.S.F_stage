@@ -10,16 +10,14 @@ function LoginForm() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Send a POST request to check if user account exists
-      const response = await axios.post('http://127.0.0.1:8000/api/check-user', {
+      const response = await axios.post('http://127.0.0.1:8000/api/check-user/', {
         email,
         password,
       });
-
-      // Check if user account exists based on response
-      if (response.data.match) {
+  
+      if (response.data.exists) {
         console.log('User account found!');
       } else {
         console.log('User account not found.');
@@ -28,6 +26,7 @@ function LoginForm() {
       console.error('An error occurred.');
     }
   };
+  
 
   return (
     <div className="login_form">
