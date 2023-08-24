@@ -39,12 +39,13 @@ function SignupForm() {
 
   return (
     <div className="signup_form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} action="/register/" method="POST">
         <h2>Signup</h2>
         <a href='/3D.S.F_stage' className='close'><CgClose/></a>
         <div className="input_box">
           <input
             type="email"
+            name='email'
             placeholder="Enter your Email"
             required
             value={email}
@@ -55,6 +56,7 @@ function SignupForm() {
         <div className="input_box">
           <input
             type="password"
+            name='password1'
             placeholder="create your password"
             required
             value={password}
@@ -68,6 +70,7 @@ function SignupForm() {
           <input
             type="password"
             placeholder="confirm your password"
+            name='password2'
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
