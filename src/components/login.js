@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { CgClose, CgLogIn } from 'react-icons/cg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+
+  const history = useNavigate();
+
   // State variables for email and password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,6 +23,7 @@ function LoginForm() {
   
       if (response.data.exists) {
         console.log('User account found!');
+        history('/3D.S.F_stage');
       } else {
         console.log('User account not found.');
       }
@@ -41,6 +46,7 @@ function LoginForm() {
           <input
             type="email"
             placeholder="Enter your Email"
+            name="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -50,6 +56,7 @@ function LoginForm() {
         <div className="input_box">
           <input
             type="password"
+            name="password"
             placeholder="Enter your password"
             required
             value={password}

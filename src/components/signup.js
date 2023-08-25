@@ -2,15 +2,23 @@ import React, { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import '../App.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function SignupForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPasswordError, setShowPasswordError] = useState(false); // Track error state
+  const [showemailError, setShowemailError] = useState(false);
+
+  const history = useNavigate(); // Access the navigation history object
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
+    setShowemailError(false);
 
     if (password !== confirmPassword) {
       setShowPasswordError(true); // Show error if passwords don't match
@@ -18,6 +26,10 @@ function SignupForm() {
     }
 
     setShowPasswordError(false); // Hide error if passwords match
+    
+
+    
+
 
     // Create a data object with form fields
     const formData = {
@@ -31,15 +43,38 @@ function SignupForm() {
 
       // Handle success or do something with the response
       console.log('Response:', response.data);
+      
+
+      
+
+      if (response.data.exists) {
+        setShowemailError(true);
+
+        console.log(showemailError);
+        console.log('alredy have an account!');
+      } else {
+        setShowemailError(false);
+        console.log('account created.');
+        history('/3D.S.F_stage/login');
+        
+        
+      }
+
     } catch (error) {
       // Handle error
       console.error('Error:', error);
     }
+
+    
+
+    
+
+
   };
 
   return (
     <div className="signup_form">
-      <form onSubmit={handleSubmit} action="/register/" method="POST">
+      <form onSubmit={handleSubmit} >
         <h2>Signup</h2>
         <a href='/3D.S.F_stage' className='close'><CgClose/></a>
         <div className="input_box">
@@ -50,7 +85,17 @@ function SignupForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={
+              showemailError
+                ? { borderColor: 'red', backgroundColor: '#fee', outlineColor: 'red' }
+                : {}
+            }
           />
+
+          {showemailError && (
+            <span className="error_message">alredy have an account!</span>
+          )}
+
           <i className="uil uil-envelope-alt email"></i>
         </div>
         <div className="input_box">
