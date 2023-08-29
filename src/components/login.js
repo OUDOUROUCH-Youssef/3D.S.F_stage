@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CgClose, CgLogIn } from 'react-icons/cg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from './UserContext';
 
 function LoginForm() {
 
@@ -10,6 +11,7 @@ function LoginForm() {
   // State variables for email and password
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setFound } = useUserContext();
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -23,13 +25,17 @@ function LoginForm() {
   
       if (response.data.exists) {
         console.log('User account found!');
-        history('/3D.S.F_stage');
+        setFound(true);
+        
+        history('/3D.S.F_stage/client');
+        
       } else {
         console.log('User account not found.');
       }
     } catch (error) {
       console.error('An error occurred.');
     }
+    
   };
   
 

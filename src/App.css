@@ -55,7 +55,10 @@ a {
 .nav_link:hover {
   color: #d9d9d9;
 }
-
+#logout{
+  text-decoration: none;
+  color: white;
+}
 .button {
   padding: 6px 24px;
   border: 2px solid white;
