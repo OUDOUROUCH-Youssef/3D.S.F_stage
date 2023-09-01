@@ -1,5 +1,6 @@
 
 import '../App';
+import axios from 'axios';
 import Result from './result.js';
 import React, { useState, useEffect } from 'react';
 import { CgClose } from "react-icons/cg";
@@ -12,16 +13,46 @@ function Model({ url, ...props }) {
 }
 
 function Upload() {
+  const [file, setFile] = useState(null);
   const [uploadedModel, setUploadedModel] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [showResult, setShowResult] = useState(false);
 
+  const handleSubmit = async () => {
+
+    const formData = new FormData();
+    formData.append('file', file, file.name); // Include the file name
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/upload/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log('Response data:', response.data);
+    } catch (error) {
+      if (error.response) {
+        console.log('Server responded with:', error.response.status);
+        console.log('Response data:', error.response.data);
+      } else if (error.request) {
+        console.log('Request was made but no response was received:', error.request);
+      } else {
+        console.log('Error setting up the request:', error.message);
+      }
+
+      alert('Error uploading file');
+    }
+  };
+
   const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+    if (selectedFile) {
+      const url = URL.createObjectURL(selectedFile);
       setUploadedModel(url);
       setShowResult(true);
+      
     }
   };
 
@@ -40,9 +71,10 @@ function Upload() {
   const handleDrop = (e) => {
     e.preventDefault();
     setDragActive(false);
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
+    const selectedFile =e.dataTransfer.files[0];
+    setFile(selectedFile);
+    if (selectedFile) {
+      const url = URL.createObjectURL(selectedFile);
       setUploadedModel(url);
       setShowResult(true);
     }
@@ -67,7 +99,7 @@ function Upload() {
   return (
     <div>
       {showResult ? (
-        <Result uploadedModel={uploadedModel} />
+        <Result uploadedModel={uploadedModel} handleSubmit={handleSubmit} />
       ) : (
         <div className="upload_base">
           <label
@@ -82,6 +114,7 @@ function Upload() {
               accept=".obj"
               onChange={handleFileUpload}
             />
+            
           </label>
           
           <a href='/3D.S.F_stage' className='close'><CgClose/></a>
