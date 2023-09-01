@@ -3,14 +3,23 @@ import './App.css';
 import LoginForm from './components/login';
 import SignupForm from './components/signup';
 import Suggest from './components/suggest.js';
+import Client from './components/client.js';
 import {Upload} from './components/upload';
 import Home from './components/home';
 import { FaFacebookF } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaGoogle } from 'react-icons/fa';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useUserContext } from './components/UserContext';
 
 function App() { 
+  const { found, setFound } = useUserContext();
+
+  const handleLogout = () => {
+    setFound(false); // Set found to false
+    
+  };
+
     return( 
         <div className='home'>
           <header className="header">
@@ -35,9 +44,19 @@ function App() {
                   </a>
                 </li>
               </ul>
-              <a href='/3D.S.F_stage/login'><button className="button" id="form-open">
+              {found ? (
+                
+                <button className="button" id="form-open" onClick={handleLogout}>
+                  <a href='/3D.S.F_stage' id='logout'>logout</a>
+                </button>
+                
+          ) : (
+            <a href='/3D.S.F_stage/login'>
+              <button className="button" id="form-open">
                 login
-              </button></a>
+              </button>
+            </a>
+          )}
             </nav>
           </header>
           <div>
@@ -47,6 +66,7 @@ function App() {
             <Route  path="/3D.S.F_stage/signup" element={<SignupForm/>}/>
             <Route  path="/3D.S.F_stage/Upload" element={<Upload/>}/>
             <Route  path="/3D.S.F_stage/suggest" element={<Suggest/>}/>
+            <Route  path="/3D.S.F_stage/client" element={<Client/>}/>
             <Route  path="/3D.S.F_stage" element={<Home/>}/>
           </Routes>
           </BrowserRouter>
